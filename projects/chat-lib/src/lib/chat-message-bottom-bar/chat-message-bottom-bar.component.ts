@@ -22,19 +22,19 @@ export class ChatMessageBottomBarComponent implements OnInit {
   }
 
   sendMessage() {
-    let msg = this.messageForm.controls.message.value;
-    if(msg) { 
-      this.chatService.chatListPush('sent',msg);
+    const msg = this.messageForm.controls.message.value;
+    if (msg) {
+      this.chatService.chatListPush('sent', msg);
       this.messageForm.controls.message.reset();
       const req = {
         data: {
           Body: msg
           }
-        }
+        };
       this.chatService.chatpost(req).pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
-          this.chatService.chatListPushRevised('recieved', data)
-      },err => {
-        this.chatService.chatListPushRevised('recieved', err.error)
+          this.chatService.chatListPushRevised('recieved', data);
+      }, err => {
+        this.chatService.chatListPushRevised('recieved', err.error);
       });
     }
     }

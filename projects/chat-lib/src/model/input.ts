@@ -5,8 +5,8 @@ export class  InputValues {
     channel: string;
     appId: string;
     title?: string;
-    imageUrl?: string; 
+    imageUrl?: string;
     chatbotUrl: string;
     context?: string;
-    header? : string
+    header?: string;
 }
