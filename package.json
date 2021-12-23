@@ -1,6 +1,6 @@
 {
   "name": "chatbot-client-v8",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "copy:assets": "node scripts/copy-assets"
+    "copy:assets": "node scripts/copy-assets",
+    "test-coverage": "ng test --code-coverage=true --watch=false --sourceMap=false"
   },
   "dependencies": {
     "@angular/animations": "^9.1.13", 
@@ -43,6 +44,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-mocha-reporter": "2.2.5",
     "ng-packagr": "^9.0.0",
     "protractor": "^7.0.0",
     "ts-node": "~7.0.0",

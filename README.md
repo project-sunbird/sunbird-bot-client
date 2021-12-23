@@ -1,18 +1,20 @@
-# Common angular components for Sunbird consumption!
-Contains common UI components powered by angular. These components are designed to be used in Chat Bot platforms *(hybird mobile app, web portal, any browser based apps)* to drive reusability, maintainability hence reducing the redundant development effort significantly.
+# Sunbird bot client application
+This is build as Angular library. Where this angular library can be integrated into any angular application(like sunbird portal). Once we integrate this library into portal user can interact with bot for his queries by navigating through the options provided by the bot.
+
 
 # Getting Started
-For help getting started with a new Angular app, check out the Angular CLI.
-For existing apps, follow these steps to begin using .
+
+To integrate the chatbot client library into portal use the below steps
 
 ## Step 1: Install the package
-    npm install @project-sunbird/common-consumption --save
+
+    npm i sunbird-chatbot-client --save
 
 
-## Step 3: Import the modules and components
+## Step 2: Import the modules and components
 Import the NgModule for each component you want to use:
        
-    import { ChatLibModule} from '';
+    import {ChatLibModule, ChatLibService} from 'sunbird-chatbot-client';
     
     @NgModule({
 	    ...
@@ -21,7 +23,21 @@ Import the NgModule for each component you want to use:
 	    
 	    ...
     })
-    export class TestAppModule { }
+
+
+## Step 3: Add the library component to the HTML page
+
+    <lib-chat-window [inputValues]="botConfig"></lib-chat-window>
+
+### botConfig properties:
+
+    chatbotUrl: string  -> API endpoint for server communication to get the response for the user input
+    appId: string       -> For Telemetry - Unique application indentifier 
+    userId: string      -> For telemetry - User details who is interacting with the bot
+    did: string         -> For telemetry - Unique device string for telemetry to log
+    channel: string     -> For telemetry - Unique channel string to identify the use belongs to which tenant
+
+
 
 ## Available components
 

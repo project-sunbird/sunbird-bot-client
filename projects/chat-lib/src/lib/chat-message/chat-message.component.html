@@ -3,11 +3,11 @@
     <div class="chat-msg " [ngClass]="{ 'recieved': data.type==='recieved', 'sent': data.type==='sent' }" >
         <div [innerHTML]="data.text">
         </div>
-        <div *ngIf="isButtonAvailable" class="btn-cover my-5px">
+        <div *ngIf="isButtonAvailable" class="btn-cover my-5px" role="list" aria-label="query list">
             <div class="my-5px mr-5px" *ngFor='let btn of buttons'>
-                <button *ngIf="btn.value !== '0' && btn.value !== '99'" type="button" [disabled]= "btn.disabled" class="btn-primary" (click)="buttonClicked(btn.value,btn.text)">{{btn.text}}</button>
-                <button *ngIf="btn.value === '0' || btn.value === '99'" type="button" [disabled]= "btn.disabled" class="btn-info" (click)="buttonClicked(btn.value,btn.text)">{{btn.text}}</button>
+                <button *ngIf="btn.value !== '0' && btn.value !== '99'" type="button" [disabled]= "btn.disabled" class="btn-primary" tabindex="0" (click)="buttonClicked(btn.value,btn.text)">{{btn.text}}</button>
+                <button *ngIf="btn.value === '0' || btn.value === '99'" type="button" [disabled]= "btn.disabled" class="btn-info" tabindex="0" (click)="buttonClicked(btn.value,btn.text)">{{btn.text}}</button>
             </div>
         </div>
     </div>
-</div>  
+</div>

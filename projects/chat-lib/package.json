@@ -1,5 +1,5 @@
 {
-  "name": "@project-sunbird/chatbot-client-v9",
+  "name": "@project-sunbird/chatbot-client-v8",
   "version": "3.0.0",
   "peerDependencies": {
     "@angular/common": "^9.1.13",
