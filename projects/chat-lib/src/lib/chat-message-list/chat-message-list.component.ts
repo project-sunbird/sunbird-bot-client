@@ -35,7 +35,7 @@ export class ChatMessageListComponent implements OnInit, AfterViewChecked {
     if (this.array.length === 0 ) {
       const req = {
         data: {
-          body: "0"
+            body: this.botInitMsg
           }
         }
       const reqData = this.chatService.chatpost(req)

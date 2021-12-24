@@ -48,7 +48,7 @@ export class ChatLibService {
    
     const chat = {
       'buttons': msg.choices,
-      'text': msg.text,
+      'text': msg.title,
       'type': source
     }
     this.chatList.push(chat);

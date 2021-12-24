@@ -30,7 +30,8 @@ export class ChatMessageComponent implements OnInit {
     this.chatService.chatListPush('sent',text);
     const req = {
       data: {
-        body: indx
+        body: indx,
+        chooseMenu: true
         }
       }
     this.sendMessage(req)
