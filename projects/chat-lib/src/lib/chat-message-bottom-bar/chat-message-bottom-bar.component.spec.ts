@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { ChatMessageBottomBarComponent } from './chat-message-bottom-bar.component';
 
 describe('ChatMessageBottomBarComponent', () => {
@@ -9,7 +8,7 @@ describe('ChatMessageBottomBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule],
+      imports: [FormsModule, ReactiveFormsModule],
       declarations: [ ChatMessageBottomBarComponent ]
     })
     .compileComponents();

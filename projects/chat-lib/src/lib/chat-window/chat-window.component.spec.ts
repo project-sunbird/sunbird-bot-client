@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ChatWindowComponent } from './chat-window.component';
 
 describe('ChatWindowComponent', () => {
@@ -10,9 +8,8 @@ describe('ChatWindowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       declarations: [ ChatWindowComponent ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
@@ -25,7 +22,9 @@ describe('ChatWindowComponent', () => {
       userId: 'U123',
       channel: '123',
       appId: 'sunbird.bot',
-      chatbotUrl: 'https://staging.sunbird.com'
+      chatbotUrl: 'https://staging.sunbird.com',
+      socketUrl: 'http://localhost:3005',
+      botInitMsg: 'Hi'
     }
     fixture.detectChanges();
   });
