@@ -9,7 +9,7 @@ describe('ChatLibService', () => {
 
  
   it('should be created', () => {
-    const service: ChatLibService = TestBed.get(ChatLibService);
+    const service: ChatLibService = TestBed.inject(ChatLibService);
     expect(service).toBeTruthy();
   });
 

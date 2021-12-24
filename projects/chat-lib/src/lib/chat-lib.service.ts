@@ -17,8 +17,6 @@ export class ChatLibService {
   public chatbotUrl;
   public context;
 
-  constructor() { }
-
   chatpost(req?: any): Observable<any> {
     if(!this.did) {
       this.did = Date.now();

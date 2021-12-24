@@ -53,7 +53,7 @@ describe('ChatMessageComponent', () => {
   });
 
   it('should disabled the button', () => {
-    const chatService = TestBed.get(ChatLibService);
+    const chatService = TestBed.inject(ChatLibService);
     spyOn(chatService, 'disableButtons')
     component.disableButtons();
     expect(chatService.disableButtons).toHaveBeenCalled()
@@ -61,8 +61,7 @@ describe('ChatMessageComponent', () => {
 
   
   xit('should send message using socket service', () => {
-    const wss = TestBed.get(WebsocketioService);
-    const chatService = TestBed.get(ChatLibService);
+    const chatService = TestBed.inject(ChatLibService);
     spyOn(chatService, 'chatpost').and.returnValue({})
     component.sendMessage({ data: { body: 1 } });
     expect(component.sendMessage).toHaveBeenCalled()

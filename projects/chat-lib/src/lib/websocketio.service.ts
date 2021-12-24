@@ -9,7 +9,6 @@ import { io } from "socket.io-client";
 export class WebsocketioService {
 
   public socket
-  constructor() { }
 
   public initSocketConnection(socketURl) {
     const URL = socketURl;
@@ -27,17 +26,18 @@ export class WebsocketioService {
       this.socket.connect();
     }
 
-    this.socket.on("session", ({ sessionID, userID }) => {
+    this.socket.on("session", ({ sessionid, userid }) => {
       // attach the session ID to the next reconnection attempts
-      this.socket.auth = { sessionID, userID };
+      this.socket.auth = { sessionid, userid };
       // store it in the localStorage
-      localStorage.setItem("sessionID", sessionID);
-      localStorage.setItem("userID", userID);
+      localStorage.setItem("sessionID", sessionid);
+      localStorage.setItem("userID", userid);
       // save the ID of the user
-      this.socket.userID = userID;
+      this.socket.userID = userid;
     });
 
     this.socket.on("connect_error", (err) => {
+      console.log("ERR: SOCKET CONNECTION : ",err);
     });
 
   }
