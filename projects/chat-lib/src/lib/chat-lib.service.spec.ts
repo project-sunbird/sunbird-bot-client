@@ -34,7 +34,7 @@ describe('ChatLibService', () => {
   
   it('should add received message to chat list', inject([ChatLibService], (service: ChatLibService) => {
     const rcvObj = {
-      text: "Hello, I am Tara! I am your DIKSHA guide",
+      title: "Hello, I am Tara! I am your DIKSHA guide",
       choices: [
         {text: "Digital Content", value: "1"},
         {text: "Course", value: "2"}
@@ -54,7 +54,7 @@ describe('ChatLibService', () => {
 
   it('should disabled the button', inject([ChatLibService], (service: ChatLibService) => {
     const rcvObj = {
-      text: "Hello, I am Tara! I am your DIKSHA guide",
+      title: "Hello, I am Tara! I am your DIKSHA guide",
       choices: [
         {text: "Digital Content", value: "1"},
         {text: "Course", value: "2"}
