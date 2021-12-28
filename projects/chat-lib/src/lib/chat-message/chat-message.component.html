@@ -6,7 +6,7 @@
         <div *ngIf="isButtonAvailable" class="btn-cover my-5px" role="list" aria-label="query list">
             <div class="my-5px mr-5px" *ngFor='let btn of buttons'>
                 <button *ngIf="btn.key !== '0' && btn.key !== '99'" type="button" [disabled]= "btn.disabled" class="btn-primary" (click)="buttonClicked(btn.key,btn.text)">{{btn.text}}</button>
-                <button *ngIf="btn.key === '0' || btn.key === '99'" type="button" [disabled]= "btn.disabled" class="btn-info" (click)="buttonClicked(btn.key,btn.text)">{{btn.text}}</button>
+                <button *ngIf="btn.backmenu" type="button" [disabled]= "btn.disabled" class="btn-info" (click)="buttonClicked(btn.key,btn.text)">{{btn.text}}</button>
             </div>
         </div>
     </div>
