@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ChatWindowComponent } from './chat-window.component';
+import { WebsocketioService } from '../websocketio.service';
+import { ChatLibService } from '../chat-lib.service';
 
 describe('ChatWindowComponent', () => {
   let component: ChatWindowComponent;
@@ -10,6 +12,7 @@ describe('ChatWindowComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ChatWindowComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [WebsocketioService, ChatLibService]
     })
     .compileComponents();
   }));
@@ -27,9 +30,38 @@ describe('ChatWindowComponent', () => {
       botInitMsg: 'Hi'
     }
     fixture.detectChanges();
+    
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+
+  it('should create call ngInit for socket connection', async() => {
+    const wss = TestBed.inject(WebsocketioService);
+    spyOn(wss, 'initSocketConnection').and.callThrough();
+    component.ngOnInit();
+    expect(component.inputValues.title).toEqual('Ask Bot');
   });
+
+
+  it('should listen for bot response on bot expand', async() => {
+    spyOn(component, 'listenBotResponse');
+    component.expandChatIntent();
+    expect(component.inputValues.collapsed).toBeFalsy();
+    expect(component.listenBotResponse).toHaveBeenCalled();
+  });
+
+  it('should destroy socket connection on closing bot', async() => {
+    const wss = TestBed.inject(WebsocketioService);
+    spyOn(wss, 'destroyWSConnection');
+    component.collapseChatIntent();
+    expect(component.inputValues.collapsed).toBeTruthy();
+    expect(wss.destroyWSConnection).toHaveBeenCalled();
+  });
+
+  it('should listen for bot response', async() => {
+    const chatService = TestBed.inject(ChatLibService);
+    const wss = TestBed.inject(WebsocketioService);
+    spyOn(chatService, 'chatListPushRevised');
+    component.listenBotResponse();
+  });
+
 });
