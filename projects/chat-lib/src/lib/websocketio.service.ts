@@ -11,9 +11,9 @@ export class WebsocketioService {
   public socket
 
   public initSocketConnection(socketURl) {
-    const URL = socketURl;
-    this.socket = io(URL, {
-      path: '/uci-transport-socket/socket.io',
+    const url = new URL(socketURl);
+    this.socket = io(url.origin, {
+      path: url.pathname == '/' ? '/socket.io' : `${url.pathname}/socket.io`,
       transports: ['websocket'],
       autoConnect: false 
     });
