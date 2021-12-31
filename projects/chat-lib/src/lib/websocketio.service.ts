@@ -12,32 +12,33 @@ export class WebsocketioService {
 
   public initSocketConnection(socketURl) {
     const URL = socketURl;
-    this.socket = io(URL, { 
+    this.socket = io(URL, {
+      path: '/uci-transport-socket/socket.io',
       transports: ['websocket'],
       autoConnect: false 
     });
 
-    const sessionID = localStorage.getItem("sessionID");
-    const userID = localStorage.getItem("userID");
-    if (sessionID) {
-      this.socket.auth = { sessionID, userID };
+    const sessionid = localStorage.getItem("sessionID");
+    const userid = localStorage.getItem("userID");
+    if (sessionid) {
+      this.socket.auth = { sessionid, userid };
       this.socket.connect();
     } else {
       this.socket.connect();
     }
 
-    this.socket.on("session", ({ sessionid, userid }) => {
+    this.socket.on("session", ({ sessionID, userID }) => {
       // attach the session ID to the next reconnection attempts
-      this.socket.auth = { sessionid, userid };
+      this.socket.auth = { sessionID, userID };
       // store it in the localStorage
-      localStorage.setItem("sessionID", sessionid);
-      localStorage.setItem("userID", userid);
+      localStorage.setItem("sessionID", sessionID);
+      localStorage.setItem("userID", userID);
       // save the ID of the user
-      this.socket.userID = userid;
+      this.socket.userID = userID;
     });
 
     this.socket.on("connect_error", (err) => {
-      console.log("ERR: SOCKET CONNECTION : ",err);
+      // console.log("ERR: SOCKET CONNECTION : ", err);
     });
 
   }
