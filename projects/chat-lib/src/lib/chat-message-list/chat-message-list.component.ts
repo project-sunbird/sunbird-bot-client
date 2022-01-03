@@ -39,10 +39,12 @@ export class ChatMessageListComponent implements OnInit, AfterViewChecked {
           }
         }
       const reqData = this.chatService.chatpost(req)
-      this.wss.socket.emit("botRequest", {
-        content: reqData,
-        to: this.wss.socket.userID,
-      });
+      this.wss.triggerInitMsg.subscribe(socket => {
+        socket.emit("botRequest", {
+          content: reqData,
+          to: socket.userID,
+        });
+      })
     }
   }
 

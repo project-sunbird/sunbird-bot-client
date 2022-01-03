@@ -13,7 +13,6 @@ export class ChatWindowComponent implements OnInit {
   isImageFromSrc: boolean = false;
   constructor(public wss: WebsocketioService, public chatService: ChatLibService) { }
   ngOnInit() {
-    this.wss.initSocketConnection(this.inputValues.socketUrl)
     this.inputValues.collapsed = true;
     this.isImageFromSrc = this.inputValues.imageUrl ? true : false
     this.inputValues.title = this.inputValues.title ? this.inputValues.title : 'Ask Bot'
@@ -28,6 +27,7 @@ export class ChatWindowComponent implements OnInit {
   }
 
   expandChatIntent() {
+    this.wss.initSocketConnection(this.inputValues.socketUrl)
     this.inputValues.collapsed = false;
     this.listenBotResponse()
   }

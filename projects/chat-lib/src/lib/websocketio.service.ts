@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { io } from "socket.io-client";
 
 
@@ -8,7 +9,8 @@ import { io } from "socket.io-client";
 })
 export class WebsocketioService {
 
-  public socket
+  public socket;
+  public triggerInitMsg = new Subject<any>();
 
   public initSocketConnection(socketURl) {
     const url = new URL(socketURl);
@@ -30,11 +32,12 @@ export class WebsocketioService {
     this.socket.on("session", ({ sessionID, userID }) => {
       // attach the session ID to the next reconnection attempts
       this.socket.auth = { sessionID, userID };
+      this.socket.userID = userID;
       // store it in the localStorage
       localStorage.setItem("sessionID", sessionID);
       localStorage.setItem("userID", userID);
-      // save the ID of the user
-      this.socket.userID = userID;
+      this.triggerInitMsg.next(this.socket)
+     
     });
 
     this.socket.on("connect_error", (err) => {
@@ -47,6 +50,7 @@ export class WebsocketioService {
     this.socket.off("connect_error");
     this.socket.off("connect");
     this.socket.off("botRequest");
+    this.socket.emit('endConnection');
   }
 
 
