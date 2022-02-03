@@ -6,7 +6,9 @@ export class  InputValues {
     appId: string;
     title?: string;
     imageUrl?: string; 
-    chatbotUrl: string;
+    chatbotUrl?: string;
     context?: string;
-    header? : string
+    header? : string;
+    socketUrl: string;
+    botInitMsg: string;
 }

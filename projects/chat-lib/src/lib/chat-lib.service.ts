@@ -1,7 +1,5 @@
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { of as observableOf, throwError as observableThrowError, Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 let uuid = UUID.UUID();
@@ -11,7 +9,6 @@ let uuid = UUID.UUID();
 })
 export class ChatLibService {
 
-  http: HttpClient;
   public chatList = [];
   public userId ;
   public did;
@@ -19,10 +16,6 @@ export class ChatLibService {
   public channel;
   public chatbotUrl;
   public context;
-
-  constructor(http: HttpClient) {
-    this.http = http;
-  }
 
   chatpost(req?: any): Observable<any> {
     if(!this.did) {
@@ -35,11 +28,9 @@ export class ChatLibService {
     req.data['channel'] = this.channel;
     req.data['From'] = (this.did).toString();
     req.data['context'] = this.context;
-    return this.http.post(this.chatbotUrl, req.data, options).pipe(
-      mergeMap((data: any) => {
-        return observableOf(data);
-      }));
+    return req.data;
   }
+
   chatListPush(source, msg) {
     const chat = {
       'text': msg,
@@ -49,15 +40,15 @@ export class ChatLibService {
   }
 
   chatListPushRevised(source, msg) {
-    if(msg.data.button){
-      for(var val of msg.data.buttons){ 
+    if(msg.choices){
+      for(var val of msg.choices){ 
         val.disabled = false
       }
     }
    
     const chat = {
-      'buttons': msg.data.buttons,
-      'text': msg.data.text,
+      'buttons': msg.choices,
+      'text': msg.title,
       'type': source
     }
     this.chatList.push(chat);
