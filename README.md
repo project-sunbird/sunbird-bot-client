@@ -48,7 +48,7 @@ Import the NgModule for each component you want to use:
 | [Chat Message](https://github.com/Sunbird-Ed/SunbirdEd-consumption-ngcomponents) | Library Chat Message Component |lib-chat-message|
 | [Chat Message Bottom Bar](https://github.com/Sunbird-Ed/SunbirdEd-consumption-ngcomponents) | Can be used in the course page for all consumption platforms|lib-chat-message-bottom-bar|
 
-## Versions
+## Versions 
 
 |   release branch  	| npm package version 	| Angular Version 	|
 |:-----------------:	|:-------------------:	|:---------------:	|
