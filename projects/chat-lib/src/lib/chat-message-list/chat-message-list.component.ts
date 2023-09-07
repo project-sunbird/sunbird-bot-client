@@ -8,7 +8,7 @@ import { Subject} from 'rxjs';
   styleUrls: ['./chat-message-list.component.scss']
 })
 export class ChatMessageListComponent implements OnInit, AfterViewChecked {
-  @ViewChild('msgScrollToBottom', {static: false}) private msgScrollToBottom: ElementRef;
+  @ViewChild('msgScrollToBottom') private msgScrollToBottom: ElementRef;
   
   @Input() did: string;
   @Input() userId: string;
