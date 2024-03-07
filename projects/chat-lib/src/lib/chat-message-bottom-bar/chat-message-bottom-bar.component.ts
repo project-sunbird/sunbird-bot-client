@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject} from 'rxjs';
 import { ChatLibService } from '../chat-lib.service';
@@ -10,8 +10,8 @@ import { ChatLibService } from '../chat-lib.service';
   styleUrls: ['./chat-message-bottom-bar.component.css']
 })
 export class ChatMessageBottomBarComponent implements OnInit {
-  public messageForm = new FormGroup({
-    message: new FormControl('', Validators.required)
+  public messageForm = new UntypedFormGroup({
+    message: new UntypedFormControl('', Validators.required)
   });
   message: any;
   public unsubscribe$ = new Subject<void>();
