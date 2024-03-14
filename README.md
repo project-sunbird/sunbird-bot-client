@@ -59,3 +59,4 @@ Import the NgModule for each component you want to use:
 |  release-5.1.0_v12 	|        3.0.5        	|      NG V12      	|
 |  release-6.0.0_v13 	|        4.0.0        	|      NG V13      	|
 |      8.0.0_v15    	|        8.0.0        	|      NG V15      	|
+|      8.0.0_v16    	|        8.0.1        	|      NG V16      	|
